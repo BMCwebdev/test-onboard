@@ -1,13 +1,12 @@
 import { css } from '../styled-system/css'
 
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
 import {
   Checkbox as AriaCheckbox,
   CheckboxGroup as AriaCheckboxGroup,
   CheckboxGroupProps as AriaCheckboxGroupProps,
   CheckboxProps,
   ValidationResult,
-  composeRenderProps,
 } from 'react-aria-components'
 import { cva, cx } from '../styled-system/css'
 import { Description, FieldError, Label } from './Field'
@@ -112,38 +111,27 @@ export function Checkbox(props: CheckboxProps) {
       {({ isSelected, isIndeterminate, ...renderProps }) => (
         <>
           <div
-            // className={boxStyles({
-            //   isSelected: isSelected || isIndeterminate,
-            //   isInvalid: renderProps.isInvalid,
-            //   isDisabled: renderProps.isDisabled,
-            // })}
-
-
-            // Okay, try to use the first original method, and just put focus ring styles right into the base styles see if the prop is working.
-
-
-            // Let's try the raw method
-            // className={
-            //   cx(
-            //     boxStyles({
-            //       isSelected: isSelected || isIndeterminate,
-            //       isInvalid: renderProps.isInvalid,
-            //       isDisabled: renderProps.isDisabled,
-            //     }),
-            //     focusRing({
-            //       isFocusVisible: renderProps.isFocusVisible,
-            //     })
-            //   )
-            // }
-            
-            className={css(
-              boxStyles.raw({
-                isSelected: isSelected || isIndeterminate,
-                isInvalid: renderProps.isInvalid,
-                isDisabled: renderProps.isDisabled,
-              }),
-              focusRing.raw({isFocusVisible: renderProps.isFocusVisible,})
-            )}
+            className={
+              cx(
+                boxStyles({
+                  isSelected: isSelected || isIndeterminate,
+                  isInvalid: renderProps.isInvalid,
+                  isDisabled: renderProps.isDisabled,
+                }),
+                focusRing({
+                  isFocusVisible: renderProps.isFocusVisible,
+                })
+              )
+            }
+            // FYI the raw version of the above is:
+            // className={css(
+            //   boxStyles.raw({
+            //     isSelected: isSelected || isIndeterminate,
+            //     isInvalid: renderProps.isInvalid,
+            //     isDisabled: renderProps.isDisabled,
+            //   }),
+            //   focusRing.raw({isFocusVisible: renderProps.isFocusVisible,})
+            // )}
 
           >
             {isIndeterminate ? (

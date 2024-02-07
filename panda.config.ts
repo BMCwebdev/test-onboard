@@ -18,5 +18,15 @@ export default defineConfig({
   // The output directory for your css system
   outdir: "styled-system",
 
-  // lightningcss: true,
+  lightningcss: true,
+
+  // Temporary while we wait to Panda to fix classname clash
+  utilities: {
+    extend: {
+      outlineOffset: { className: "ring-offset"}
+    }
+  },
+
+  jsxFramework: "react",
+  
 });
